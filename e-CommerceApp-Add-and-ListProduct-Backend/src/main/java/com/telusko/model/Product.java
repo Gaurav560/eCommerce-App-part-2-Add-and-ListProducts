@@ -16,20 +16,11 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(nullable = false)
     private String name;
-
-    @Column(length = 1000)
     private String description;
-
     private String brand;
-
-    @Column(nullable = false)
     private BigDecimal price;
-
     private String category;
-
     private Date releaseDate;
     private boolean productAvailable;
     private int stockQuantity;
@@ -38,7 +29,6 @@ public class Product {
     //product image details
     private String imageName;
     private String imageType;
-
     @Lob
     private byte[] imageData;
 

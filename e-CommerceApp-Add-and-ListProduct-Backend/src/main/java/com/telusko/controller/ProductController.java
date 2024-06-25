@@ -26,6 +26,7 @@ public class ProductController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
+
     @GetMapping("/product/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Integer id) {
         Product product = productService.getProductById(id);
@@ -35,7 +36,6 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 
     @PostMapping("/product")
     public ResponseEntity<?> createProduct(@RequestPart("product") Product product,
@@ -54,6 +54,8 @@ public class ProductController {
         Product product = productService.getProductById(productId);
         if (product != null && product.getImageData() != null) {
             byte[] imageData = ImageUtils.decompressImage(product.getImageData());
+            // Print the size of the decompressed image on the console
+            System.out.println("Size of decompressed image: " + imageData.length + " bytes");
             return ResponseEntity.ok()
                     .contentType(MediaType.valueOf(product.getImageType()))
                     .body(imageData);
@@ -61,7 +63,6 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 
 
 //    {
